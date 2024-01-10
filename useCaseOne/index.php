@@ -30,7 +30,7 @@ $totalTax = $fruitTax + $wineTax;
 echo '<br>';
 echo "Total tax is $totalTax";
 
-class product
+class Product
 {
     protected $name;
     protected $price;
@@ -49,8 +49,66 @@ class product
 
 }
 
-$banana = new product('banana', 1, 6);
-$bananaTotal = $banana->calculateTotalPrice();
+class basket
+{
+    protected $products;
+
+    public function __construct()
+    {
+        $this->products = [];
+    }
+    public function addProduct(Product $product): void
+    {
+        $this->products[] = $product;
+    }
+    public function calculateTotalPrice(): float
+    {
+
+        $totalPrice = 0;
+        foreach ($this->products as $product) {
+            $totalPrice += $product->calculateTotalPrice();
+        }
+        return $totalPrice;
+    }
+
+    public function calculateTax(): float
+    {
+
+        $totalTax = 0;
+        foreach ($this->products as $product) {
+            if ($product instanceof Fruit) {
+                $totalTax += $product->calculateTotalPrice() * 0.06;
+            } elseif ($product instanceof Wine) {
+                $totalTax += $product->calculateTotalPrice() * 0.21;
+            }
+        }
+        return $totalTax;
+    }
+}
+
+class Fruit extends Product
+{
+
+}
+
+class Wine extends Product
+{
+
+}
+
+$bananas = new Fruit('Bananas', 6, 1);
+$wine = new Wine('Wine', 10, 2);
+$apples = new Fruit('Apples', 1.5, 3);
+
+$basket = new Basket();
+$basket->addProduct($bananas);
+$basket->addProduct($apples);
+$basket->addProduct($wine);
+
+$totalPrice = $basket->calculateTotalPrice();
+$totalTax = $basket->calculateTax();
+
 echo '<br>';
-echo "BananaTotal is $bananaTotal";
+echo "Total price with class is: " . number_format($totalPrice, 2);
 echo '<br>';
+echo "Total tax with class is: " . number_format($totalTax, 2);
