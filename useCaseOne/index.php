@@ -30,5 +30,27 @@ $totalTax = $fruitTax + $wineTax;
 echo '<br>';
 echo "Total tax is $totalTax";
 
+class product
+{
+    protected $name;
+    protected $price;
+    protected $quantity;
+    public function __construct(string $name, float $price, int $quantity)
+    {
+        $this->name = $name;
+        $this->price = $price;
+        $this->quantity = $quantity;
+    }
 
+    public function calculateTotalPrice(): float
+    {
+        return $this->price * $this->quantity;
+    }
 
+}
+
+$banana = new product('banana', 1, 6);
+$bananaTotal = $banana->calculateTotalPrice();
+echo '<br>';
+echo "BananaTotal is $bananaTotal";
+echo '<br>';
