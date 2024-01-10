@@ -46,7 +46,10 @@ class Product
     {
         return $this->price * $this->quantity;
     }
-
+    function getPrice()
+    {
+        return $this->price;
+    }
 }
 
 class basket
@@ -84,16 +87,39 @@ class basket
         }
         return $totalTax;
     }
+    //This method is for useCaseTwo
+
+    function getProducts(): array
+    {
+        return $this->products;
+    }
+
 }
 
 class Fruit extends Product
 {
+    public function getPrice(): float
+    {
+        return $this->price;
+    }
 
+    public function setPrice(float $price): void
+    {
+        $this->price = $price;
+    }
 }
 
 class Wine extends Product
 {
+    public function getPrice(): float
+    {
+        return $this->price;
+    }
 
+    public function setPrice(float $price): void
+    {
+        $this->price = $price;
+    }
 }
 
 $bananas = new Fruit('Bananas', 6, 1);
