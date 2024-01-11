@@ -8,13 +8,14 @@
 <body>
     <h1>Welcome to the big waffle news</h1>
 
-
-    <div> <?php ?>
+    <!-- <?php ?> -->
+    <div> 
         <span>
 <?php foreach ($contents as $array) { ?>
 
-        <?php echo "<h2>" . $array->getTitle() . "</h2>"; ?>
-        <?php echo "<h2>" . $array->getText() . "</h2>"; ?>
+                <?php echo "<h2>" . $array->getTitle() . "</h2>"; ?>
+                <?php echo "<h2>" . $array->getText() . "</h2>"; ?>
+                <?php echo "<br>" ?>
     <?php } ?>
 
     </span>

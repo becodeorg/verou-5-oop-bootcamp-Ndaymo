@@ -38,7 +38,9 @@ class Article extends Content
     }
     public function makeBreaking()
     {
-        $this->title = "Breaking News " . $this->title;
+        if ($this->breakingNewsTitle) {
+            $this->title = "Breaking News " . $this->title;
+        }
     }
 }
 
@@ -46,10 +48,14 @@ class Ad extends Content
 {
     private $AdTitle;
 
-    public function __construct(string $title, string $text, bool $AdTitle)
+    public function __construct(string $title, string $text, bool $adTitle)
     {
-        parent::__construct(strtoupper($title), $text);
-        $this->AdTitle = $title . "Buy now";
+        parent::__construct($title, $text);
+
+        if ($this->$adTitle) {
+            $this->$title = $title . "Buy now";
+        }
+
     }
 
 }
@@ -71,7 +77,9 @@ class Vacancy extends Content
 $contents = [
     new Article("Backend dev gets out", "A missing web dev has been in basement for 4 years", false),
 
-    new Article("Exciting Discovery", "Scientists make a groundbreaking discovery.", true)
+    new Article("Exciting Discovery", "Scientists make a groundbreaking discovery.", true),
+
+    new Ad("Salesforce developer intern", "Do you have a bacehlors degree in CS? We need you", true)
 ];
 
 
