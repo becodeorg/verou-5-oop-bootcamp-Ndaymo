@@ -1,0 +1,16 @@
+* {
+  box-sizing: border-box;
+  font-family: Poppins, sans-serif;
+}
+
+h1 {
+  background-color: rgb(88, 88, 223);
+  margin: 10px;
+}
+section {
+  background-color: gray;
+}
+
+img {
+  width: 100vw;
+}

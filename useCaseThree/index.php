@@ -46,15 +46,11 @@ class Article extends Content
 
 class Ad extends Content
 {
-    private $AdTitle;
+    private $adTitle;
 
-    public function __construct(string $title, string $text, bool $adTitle)
+    public function __construct(string $title, string $text)
     {
-        parent::__construct($title, $text);
-
-        if ($this->$adTitle) {
-            $this->$title = $title . "Buy now";
-        }
+        parent::__construct(strtoupper($title), $text);
 
     }
 
@@ -67,8 +63,13 @@ class Vacancy extends Content
     {
         parent::__construct($title, $text);
         $this->vacancyTitle = $vacancyTitle;
-        $this->$title . "Apply now";
-
+        $this->addApplyNow();
+    }
+    public function addApplyNow()
+    {
+        if ($this->vacancyTitle) {
+            $this->title = $this->title . "- Apply now";
+        }
     }
 
 }
@@ -79,7 +80,10 @@ $contents = [
 
     new Article("Exciting Discovery", "Scientists make a groundbreaking discovery.", true),
 
-    new Ad("Salesforce developer intern", "Do you have a bacehlors degree in CS? We need you", true)
+    new Ad("Salesforce developer intern", "Do you have a bachelors degree in CS? We need you"),
+
+    new Vacancy("Customer care intern", "Do you have empathy? We need you", true),
+
 ];
 
 
