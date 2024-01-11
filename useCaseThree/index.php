@@ -69,13 +69,11 @@ class Vacancy extends Content
 
 
 $contents = [
+    new Article("Backend dev gets out", "A missing web dev has been in basement for 4 years", false),
 
     new Article("Exciting Discovery", "Scientists make a groundbreaking discovery.", true)
 ];
 
-foreach ($contents as $array) {
-    echo "<h2>" . $array->getTitle() . "</h2>";
-    echo "<h2>" . $array->getText() . "</h2>";
-}
+
 
 require "pageView.php";
