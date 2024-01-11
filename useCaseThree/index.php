@@ -16,39 +16,66 @@ class Content
         $this->title = $title;
         $this->text = $text;
     }
+    public function getTitle(): string
+    {
+        return $this->title;
+    }
+    public function getText(): string
+    {
+        return $this->text;
+    }
+
 }
 
 class Article extends Content
 {
-    function breakingNewsArticle($title)
+    protected $breakingNewsTitle;
+    public function __construct(string $title, string $text, bool $breakingNewsTitle)
     {
-        $this->title = "BREAKING: " . $title;
+        parent::__construct($title, $text);
+        $this->breakingNewsTitle = $breakingNewsTitle;
+        $this->makeBreaking();
+    }
+    public function makeBreaking()
+    {
+        $this->title = "Breaking News " . $this->title;
     }
 }
 
 class Ad extends Content
 {
-    function allCaps($title)
+    private $AdTitle;
+
+    public function __construct(string $title, string $text, bool $AdTitle)
     {
-        $title = strtoupper($title);
+        parent::__construct(strtoupper($title), $text);
+        $this->AdTitle = $title . "Buy now";
     }
+
 }
 
 class Vacancy extends Content
 {
-    function vacTitle($title)
+    private $vacancyTitle;
+    public function __construct(string $title, string $text, bool $vacancyTitle)
     {
-        $title += "- apply now!";
+        parent::__construct($title, $text);
+        $this->vacancyTitle = $vacancyTitle;
+        $this->$title . "Apply now";
+
     }
+
 }
 
 
-$contentArray =
-    array(
-        array("Customer support vacancy" => "Become our cheerleader"),
-        array("Toyota sale" => "50% discount on tyres if you buy")
-    );
+$contents = [
 
-foreach ($contentArray as $array) {
-    $contentArray[] = array("tile" => "text");
+    new Article("Exciting Discovery", "Scientists make a groundbreaking discovery.", true)
+];
+
+foreach ($contents as $array) {
+    echo "<h2>" . $array->getTitle() . "</h2>";
+    echo "<h2>" . $array->getText() . "</h2>";
 }
+
+require "pageView.php";
