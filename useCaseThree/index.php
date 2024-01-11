@@ -6,7 +6,7 @@ ini_set('display_startup_errors', '1');
 error_reporting(E_ALL);
 
 
-class content
+class Content
 {
     protected $title;
     protected $text;
@@ -18,10 +18,37 @@ class content
     }
 }
 
+class Article extends Content
+{
+    function breakingNewsArticle($title)
+    {
+        $this->title = "BREAKING: " . $title;
+    }
+}
+
+class Ad extends Content
+{
+    function allCaps($title)
+    {
+        $title = strtoupper($title);
+    }
+}
+
+class Vacancy extends Content
+{
+    function vacTitle($title)
+    {
+        $title += "- apply now!";
+    }
+}
+
+
 $contentArray =
     array(
         array("Customer support vacancy" => "Become our cheerleader"),
         array("Toyota sale" => "50% discount on tyres if you buy")
     );
 
-echo $contentArray[0];
+foreach ($contentArray as $array) {
+    $contentArray[] = array("tile" => "text");
+}
