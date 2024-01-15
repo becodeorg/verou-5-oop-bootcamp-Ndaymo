@@ -1,0 +1,18 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+#gameArea {
+  display: flex;
+  justify-content: space-between;
+}
+
+#prompt {
+  background-color: yellow;
+}
+
+#anwser {
+  background-color: aquamarine;
+}
